@@ -1,0 +1,453 @@
+[
+    {
+        "id": "de324364.b3b5f8",
+        "type": "mqtt in",
+        "z": "f1d807ba.fc1818",
+        "name": "in mqtt",
+        "topic": "application/1/device/1234567812345678/rx",
+        "qos": "0",
+        "broker": "d6a85777.3ae8c",
+        "x": 90,
+        "y": 120,
+        "wires": [
+            [
+                "eba0bd07.aaa828",
+                "10ba96d5.b7d7a1"
+            ]
+        ]
+    },
+    {
+        "id": "eba0bd07.aaa828",
+        "type": "debug",
+        "z": "f1d807ba.fc1818",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 310,
+        "y": 160,
+        "wires": []
+    },
+    {
+        "id": "f3d047a4.a49b9",
+        "type": "mqtt out",
+        "z": "f1d807ba.fc1818",
+        "name": "out mqtt",
+        "topic": "application/1/device/1234567812345678/tx",
+        "qos": "",
+        "retain": "",
+        "broker": "da3c80e9.e0cca",
+        "x": 420,
+        "y": 440,
+        "wires": [],
+        "inputLabels": [
+            "hello"
+        ]
+    },
+    {
+        "id": "8c5eefa3.1d7988",
+        "type": "debug",
+        "z": "f1d807ba.fc1818",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "true",
+        "x": 410,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "f5ebb8.d14e5c48",
+        "type": "inject",
+        "z": "f1d807ba.fc1818",
+        "name": "data all",
+        "topic": "json",
+        "payload": "{\"reference\":\"12\",\"confirmed\":true,\"fPort\":1,\"data\":\"MTIzNA==\"}",
+        "payloadType": "json",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 110,
+        "y": 400,
+        "wires": [
+            [
+                "3782cfbb.98b06"
+            ]
+        ]
+    },
+    {
+        "id": "3782cfbb.98b06",
+        "type": "json",
+        "z": "f1d807ba.fc1818",
+        "name": "",
+        "property": "payload",
+        "action": "",
+        "pretty": false,
+        "x": 290,
+        "y": 400,
+        "wires": [
+            [
+                "8c5eefa3.1d7988",
+                "f3d047a4.a49b9"
+            ]
+        ]
+    },
+    {
+        "id": "7a213d35.66766c",
+        "type": "mqtt in",
+        "z": "f1d807ba.fc1818",
+        "name": "ack",
+        "topic": "application/1/device/1234567812345678/ack",
+        "qos": "0",
+        "broker": "d6a85777.3ae8c",
+        "x": 90,
+        "y": 260,
+        "wires": [
+            [
+                "ffe13edf.2c7b48"
+            ]
+        ]
+    },
+    {
+        "id": "ffe13edf.2c7b48",
+        "type": "debug",
+        "z": "f1d807ba.fc1818",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 310,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "10ba96d5.b7d7a1",
+        "type": "json",
+        "z": "f1d807ba.fc1818",
+        "name": "",
+        "property": "payload",
+        "action": "obj",
+        "pretty": false,
+        "x": 290,
+        "y": 120,
+        "wires": [
+            [
+                "e74e5d41.1d7c2"
+            ]
+        ]
+    },
+    {
+        "id": "269cb666.56517a",
+        "type": "writefeed",
+        "z": "f1d807ba.fc1818",
+        "name": "writefeed",
+        "feedid": "loraTest",
+        "apikey": "Q8kJXjbVvbU8JhKOacqAMUT8aW9cyf7D",
+        "data": "payload",
+        "dataType": "msg",
+        "x": 460,
+        "y": 520,
+        "wires": []
+    },
+    {
+        "id": "88f5d024.41c23",
+        "type": "inject",
+        "z": "f1d807ba.fc1818",
+        "name": "",
+        "topic": "",
+        "payload": "87",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 90,
+        "y": 500,
+        "wires": [
+            [
+                "91444f39.1747c8"
+            ]
+        ]
+    },
+    {
+        "id": "96661f2a.331b3",
+        "type": "inject",
+        "z": "f1d807ba.fc1818",
+        "name": "",
+        "topic": "/loratest/dataH",
+        "payload": "13",
+        "payloadType": "str",
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "x": 130,
+        "y": 560,
+        "wires": [
+            [
+                "d410d1b0.6d739"
+            ]
+        ]
+    },
+    {
+        "id": "e74e5d41.1d7c2",
+        "type": "base64",
+        "z": "f1d807ba.fc1818",
+        "name": "",
+        "action": "b64",
+        "property": "payload.data",
+        "x": 440,
+        "y": 120,
+        "wires": [
+            [
+                "968070cf.8c9738"
+            ]
+        ]
+    },
+    {
+        "id": "f15d2d9a.0b7ab",
+        "type": "debug",
+        "z": "f1d807ba.fc1818",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 770,
+        "y": 40,
+        "wires": []
+    },
+    {
+        "id": "968070cf.8c9738",
+        "type": "function",
+        "z": "f1d807ba.fc1818",
+        "name": "getDataField",
+        "func": "var data = context.get('data') || 0;\nvar outputMsgs = [];\n // initialize variables\n\nif (msg.topic == \"application/1/device/1234567812345678/rx\")  // update context based on topic of input\n{\n    data = {payload: msg.payload.data};\n    context.set(\"data\", data);  // save last value in local context\n}\nvar words = data.payload.split(\"/\");\nfor (var w in words) {\n    outputMsgs.push(words[w]);\n}\n\n// now do the test to see if both inputs are triggered...\n    return [{topic:\"lora/data/1\",payload:outputMsgs[0]},{topic:\"lora/data/2\",payload:outputMsgs[1]}];",
+        "outputs": 2,
+        "noerr": 0,
+        "x": 590,
+        "y": 120,
+        "wires": [
+            [
+                "f15d2d9a.0b7ab",
+                "a1f8ba4f.2a716",
+                "5eb80e87.1793c8"
+            ],
+            [
+                "1b0cffb6.b640d8",
+                "d0ecca2f.abc7e8",
+                "a1f8ba4f.2a716"
+            ]
+        ]
+    },
+    {
+        "id": "1b0cffb6.b640d8",
+        "type": "debug",
+        "z": "f1d807ba.fc1818",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 770,
+        "y": 180,
+        "wires": []
+    },
+    {
+        "id": "a1f8ba4f.2a716",
+        "type": "microgear",
+        "z": "f1d807ba.fc1818",
+        "name": "microgear",
+        "appid": "LoraTEST",
+        "key": "wv6yUf500N8EMtL",
+        "secret": "AKdMNiysYYnKaF3TBNVp1kaaz",
+        "alias": "",
+        "topics": "",
+        "active": true,
+        "retain": "false",
+        "retainType": "bool",
+        "x": 760,
+        "y": 220,
+        "wires": [
+            [
+                "e1e7fb86.875b8"
+            ]
+        ]
+    },
+    {
+        "id": "d410d1b0.6d739",
+        "type": "debug",
+        "z": "f1d807ba.fc1818",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 370,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "e1e7fb86.875b8",
+        "type": "debug",
+        "z": "f1d807ba.fc1818",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 930,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "91444f39.1747c8",
+        "type": "function",
+        "z": "f1d807ba.fc1818",
+        "name": "convert to json",
+        "func": "var data = msg.payload;\nvar stringdata = `{\"data\":${data}}`;\nreturn {payload:stringdata};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 260,
+        "y": 500,
+        "wires": [
+            [
+                "269cb666.56517a",
+                "e771fb0e.9b1538"
+            ]
+        ]
+    },
+    {
+        "id": "e771fb0e.9b1538",
+        "type": "debug",
+        "z": "f1d807ba.fc1818",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "x": 470,
+        "y": 480,
+        "wires": []
+    },
+    {
+        "id": "5eb80e87.1793c8",
+        "type": "function",
+        "z": "f1d807ba.fc1818",
+        "name": "convert to json1",
+        "func": "var data = msg.payload;\nvar stringdata = `{\"humidity\":${data}}`;\nreturn {payload:stringdata};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 780,
+        "y": 80,
+        "wires": [
+            [
+                "cce90a00.4e01d8"
+            ]
+        ]
+    },
+    {
+        "id": "cce90a00.4e01d8",
+        "type": "writefeed",
+        "z": "f1d807ba.fc1818",
+        "name": "writefeed",
+        "feedid": "loraTest",
+        "apikey": "Q8kJXjbVvbU8JhKOacqAMUT8aW9cyf7D",
+        "data": "payload",
+        "dataType": "msg",
+        "x": 960,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "d0ecca2f.abc7e8",
+        "type": "function",
+        "z": "f1d807ba.fc1818",
+        "name": "convert to json2",
+        "func": "var data = msg.payload;\nvar stringdata = `{\"temperature\":${data}}`;\nreturn {payload:stringdata};",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 780,
+        "y": 140,
+        "wires": [
+            [
+                "8ae83f95.165d1"
+            ]
+        ]
+    },
+    {
+        "id": "8ae83f95.165d1",
+        "type": "writefeed",
+        "z": "f1d807ba.fc1818",
+        "name": "writefeed",
+        "feedid": "loraTest",
+        "apikey": "Q8kJXjbVvbU8JhKOacqAMUT8aW9cyf7D",
+        "data": "payload",
+        "dataType": "msg",
+        "x": 960,
+        "y": 140,
+        "wires": []
+    },
+    {
+        "id": "d6a85777.3ae8c",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "mqtt-test-node-red",
+        "broker": "192.168.1.5",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": ""
+    },
+    {
+        "id": "da3c80e9.e0cca",
+        "type": "mqtt-broker",
+        "z": "",
+        "name": "send mqtt",
+        "broker": "192.168.1.5",
+        "port": "1883",
+        "clientid": "",
+        "usetls": false,
+        "compatmode": true,
+        "keepalive": "60",
+        "cleansession": true,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthRetain": "false",
+        "birthPayload": "",
+        "closeTopic": "",
+        "closeQos": "0",
+        "closeRetain": "false",
+        "closePayload": "",
+        "willTopic": "",
+        "willQos": "0",
+        "willRetain": "false",
+        "willPayload": ""
+    }
+]
